@@ -1,0 +1,17 @@
+body{
+    background-image: url('../images/bg.jpg');
+}
+
+.container{
+    width: 60%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 3px;
+    box-shadow: 6px 2px 30px 0px rgba(0,0,0,0.75);
+}
+
+.image{
+    width: 200px;
+    height: 200px;
+}

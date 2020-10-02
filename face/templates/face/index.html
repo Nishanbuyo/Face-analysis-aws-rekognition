@@ -1,0 +1,56 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Django Display Images</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="{% static 'css/myStyle.css' %}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">Facial Analysis</div>
+    <div class="image-grid">
+      {% for img in page_obj %}
+      <div class="image-item">
+        <img class="image" src="{{img.image.url}}" />
+        <div>
+          <a class="btn btn-info" href="{% url 'analyze' img.id %}">Analyze</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="down">
+      <div class="upload-btn">
+        <a class="btn btn-info" href="{% url 'upload' %}">Upload Images</a>
+      </div>
+      <div>
+        <ul class="pagination">
+          {% if page_obj.has_previous %}
+          <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+          {% else %}
+          <li class="disabled"><span>&laquo;</span></li>
+          {% endif %}
+          {% for i in page_obj.paginator.page_range %}
+          {% if page_obj.number == i %}
+          <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+          {% else %}
+          <li><a href="?page={{ i }}">{{ i }}</a></li>
+          {% endif %}
+          {% endfor %}
+          {% if page_obj.has_next %}
+          <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+          {% else %}
+          <li class="disabled"><span>&raquo;</span></li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

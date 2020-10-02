@@ -1,0 +1,50 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/myStyle.css' %}">
+    <title>Analysis</title>
+</head>
+
+<body>
+
+    <div class="container container1">
+        <ul><li><a href="/">Home</a></li></ul>
+            <img class="image-analyze" src="{{image.image.url}}" alt="">
+        <div class="content">
+            {% if res %}
+            {% if celebrity%}
+                <p>Name: {{celebrity.0.Name}}</p>
+            {% endif %}
+            
+            {% for face in res %}
+            <p>Gender: {{face.Gender.Value}}</p>
+            <p>Age Range: {{face.AgeRange.Low}} to {{face.AgeRange.High}}</p>
+            <p>Emotional state: {{face.Emotions.0.Type}} with {{face.Emotions.0.Confidence}}</p>
+            {% if face.Eyeglasses.Value %}
+                <p>Eyeglasses: Yes</p>
+                {% else %}
+                <p>Eyeglasses: No</p>
+            {% endif %}
+            {% if face.Sunglasses.Value %}
+                <p>Sunglasses: Yes</p>
+                {% else %}
+                <p>Sunglasses: No</p>
+            {% endif %}
+            <hr>
+            
+            {% endfor %}
+            {% else %}
+            <p>No Face Found</p>
+            {% endif %}
+        </div>
+
+    </div>
+
+</body>
+
+</html>

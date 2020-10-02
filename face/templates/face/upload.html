@@ -1,0 +1,43 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/myStyle.css' %}">
+
+    <title>Upload</title>
+</head>
+
+<body>
+    <div class="frame">
+        <div class="center">
+            <div class="title">
+                <h1>Drop image to upload</h1>
+            </div>
+            <form action="" enctype="multipart/form-data" method="POST">
+                {% csrf_token %}
+                <div class="dropzone">
+                    <img src="http://100dayscss.com/codepen/upload.svg" class="upload-icon" />
+                    {{form.image}}
+                </div>
+
+                <input type="submit" value="Upload File" class="btn btn-file" name="uploadbutton">
+            </form>
+        </div>
+        <a class="pos btn btn-info" href="/">Cancel</a>
+
+    </div>
+    <!-- <div class="container">
+        <form action="" enctype="multipart/form-data" method="POST">
+            {% csrf_token %}
+            {{form.image}}
+            <button type="submit">Upload</button>
+        </form>
+    </div> -->
+
+</body>
+
+</html>
